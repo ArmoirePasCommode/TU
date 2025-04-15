@@ -75,3 +75,11 @@ tasks.test {
 	jvmArgs("-Djdk.instrument.traceUsage")
 	jvmArgs("-XX:+EnableDynamicAgentLoading")
 }
+
+pitest {
+	targetClasses.set(listOf("com.tp1.*"))
+	targetTests.set(listOf("com.tp1.*Test"))
+	threads.set(4)
+	outputFormats.set(listOf("HTML"))
+	jvmArgs.set(listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED"))
+}
