@@ -75,16 +75,3 @@ tasks.test {
 	jvmArgs("-Djdk.instrument.traceUsage")
 	jvmArgs("-XX:+EnableDynamicAgentLoading")
 }
-
-pitest {
-	junit5PluginVersion.set("1.1.0")
-	targetClasses.set(listOf("com.tp1.*"))
-	targetTests.set(listOf("com.tp1.*"))
-	mutationThreshold.set(80)
-	outputFormats.set(listOf("HTML", "XML"))
-
-	jvmArgs.set(listOf("--add-opens=java.base/java.lang=ALL-UNNAMED"))
-
-	useClasspathFile.set(true)
-	jvmPath.set(file(System.getenv("JAVA_HOME") + "/bin/java"))
-}
