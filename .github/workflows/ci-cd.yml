@@ -31,7 +31,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      # ---> ADD THIS STEP <---
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
@@ -48,7 +47,7 @@ jobs:
         # Only publish if the test step completes successfully or fails
         # This ensures results are uploaded even if tests fail
         if: success() || failure()
-        uses: actions/upload-artifact@v4 # <-- Updated
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: build/test-results/test
@@ -60,7 +59,18 @@ jobs:
       # 8. Publish JaCoCo report (Updated to v4)
       - name: Publish JaCoCo report
         # Only publish if the JaCoCo step completes successfully
-        uses: actions/upload-artifact@v4 # <-- Updated
+        uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
           path: build/reports/jacoco/test/html
+
+      # 9. Run PIT mutation tests
+      - name: Run PIT mutation tests
+        run: ./gradlew pitest --no-daemon
+
+      # 10. Publish PIT mutation report
+      - name: Publish PIT mutation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: pit-report
+          path: build/reports/pitest

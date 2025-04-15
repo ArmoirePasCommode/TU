@@ -4,6 +4,8 @@ plugins {
 	id("org.springframework.boot") version "3.4.4"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("jacoco")
+	id("info.solidsoft.pitest") version "1.9.11"
+
 }
 
 group = "com.tp1"
@@ -68,4 +70,11 @@ tasks.jacocoTestCoverageVerification {
 tasks.test {
 	jvmArgs("-Djdk.instrument.traceUsage")
 	jvmArgs("-XX:+EnableDynamicAgentLoading")
+}
+pitest {
+	junit5PluginVersion.set("1.1.0") // Ensure compatibility with JUnit 5
+	targetClasses.set(listOf("com.tp1.*")) // Specify the package to target
+	targetTests.set(listOf("com.tp1.*")) // Specify the test package
+	mutationThreshold.set(80) // Set the minimum mutation coverage threshold
+	outputFormats.set(listOf("HTML", "XML")) // Generate reports in HTML and XML
 }
