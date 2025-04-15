@@ -86,5 +86,5 @@ pitest {
 	jvmArgs.set(listOf("--add-opens=java.base/java.lang=ALL-UNNAMED"))
 
 	useClasspathFile.set(true)
-	jdk.set(file(System.getenv("JAVA_HOME") + "/bin/java"))
+	jvmPath.set(file(System.getenv("JAVA_HOME") + "/bin/java"))
 }
