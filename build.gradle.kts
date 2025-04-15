@@ -75,10 +75,16 @@ tasks.test {
 	jvmArgs("-Djdk.instrument.traceUsage")
 	jvmArgs("-XX:+EnableDynamicAgentLoading")
 }
+
 pitest {
-	junit5PluginVersion.set("1.1.0") // Ensure compatibility with JUnit 5
-	targetClasses.set(listOf("com.tp1.*")) // Specify the package to target
-	targetTests.set(listOf("com.tp1.*")) // Specify the test package
-	mutationThreshold.set(80) // Set the minimum mutation coverage threshold
-	outputFormats.set(listOf("HTML", "XML")) // Generate reports in HTML and XML
+	junit5PluginVersion.set("1.1.0")
+	targetClasses.set(listOf("com.tp1.*"))
+	targetTests.set(listOf("com.tp1.*"))
+	mutationThreshold.set(80)
+	outputFormats.set(listOf("HTML", "XML"))
+
+	jvmArgs.set(listOf("--add-opens=java.base/java.lang=ALL-UNNAMED"))
+
+	useClasspathFile.set(true)
+	jdk.set(file(System.getenv("JAVA_HOME") + "/bin/java"))
 }
