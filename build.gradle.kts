@@ -4,7 +4,7 @@ plugins {
 	id("org.springframework.boot") version "3.4.4"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("jacoco")
-	id("info.solidsoft.pitest") version "1.9.11"
+	id("info.solidsoft.pitest") version "1.15.0"
 
 }
 
