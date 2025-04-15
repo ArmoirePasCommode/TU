@@ -78,7 +78,8 @@ tasks.test {
 
 pitest {
 	targetClasses.set(listOf("com.tp1.*"))
-	targetTests.set(listOf("com.tp1.*Test"))
+	testSourceSets.set(listOf(sourceSets.test.get()))
+	mainSourceSets.set(listOf(sourceSets.main.get()))
 	threads.set(4)
 	outputFormats.set(listOf("HTML"))
 	jvmArgs.set(listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED"))
