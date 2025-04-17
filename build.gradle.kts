@@ -31,6 +31,7 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testImplementation("io.kotest:kotest-property:5.9.1")
 	testImplementation("io.mockk:mockk:1.13.5")
+	pitest("org.pitest:pitest-junit5-plugin:1.2.1")
 }
 
 kotlin {
